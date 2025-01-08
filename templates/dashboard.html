@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<h2>Your Events</h2>
+{% if events %}
+    <ul>
+    {% for event in events %}
+        <li>
+            <a href="{{ url_for('event_detail', event_id=event._id) }}">{{ event.name }}</a>
+            ({{ event.date }})
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't created any events yet.</p>
+{% endif %}
+
+<h2>Your Invitations</h2>
+{% if sent_invitations %}
+    <ul>
+        {% for invitation in sent_invitations %}
+            <li>
+                You have invited {{ invitation.username }} to an event.
+                <form action="{{ url_for('respond_to_invitation') }}" method="POST" style="display: inline;">
+                    <input type="hidden" name="invitation_id" value="{{ invitation._id }}">
+                    <button type="submit" name="action" value="accept">Accept</button>
+                    <button type="submit" name="action" value="reject">Reject</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no pending invitations.</p>
+{% endif %}
+{% if invitations %}
+    <ul>
+    {% for event in invitations %}
+        <li>
+            {{ event.name }} ({{ event.date }})
+            <form action="{{ url_for('respond_invitation') }}" method="post" style="display: inline;">
+                <input type="hidden" name="event_id" value="{{ event._id }}">
+                <button type="submit" name="response" value="accept">Accept</button>
+                <button type="submit" name="response" value="reject">Reject</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no pending invitations.</p>
+{% endif %}
+
+<a href="{{ url_for('create_event') }}">Create New Event</a>
+{% endblock %}
+

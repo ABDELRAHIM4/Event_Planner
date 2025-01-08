@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ event.name }}</h1>
+<p>Date: {{ event.date }}</p>
+<p>Location: {{ event.location }}</p>
+<p>Description: {{ event.description }}</p>
+<p>Creator: {{ creator.username }}</p>
+<p>Attendees: {{ event.attendee_count }}</p>
+
+<h2>Attendees</h2>
+<ul>
+{% for attendee in event.attendees %}
+            <li>{{ attendee }} {% if attendee == current_user.username %} (you) {% endif %}</li>
+{% endfor %}
+</ul>
+
+{% if current_user.id|string == event.creator|string %}
+<h2>Invite User</h2>
+<form action="{{ url_for('invite', event_id=event._id) }}" method="post">
+    <input type="text" name="invite_username" placeholder="Enter username" required>
+    <button type="submit">Send Invitation</button>
+</form>
+
+<h2>Pending Invitations</h2>
+<ul>
+{% for invitation in event.invitations %}
+    {% if invitation.status == 'pending' %}
+        <li>{{ invitation.username }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}
+
