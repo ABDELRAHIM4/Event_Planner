@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
+    {% extends "base.html" %}
+    {% block content %}
     <header>
         <h1>Login</h1>
     </header>
@@ -31,5 +33,6 @@
         </form>
         <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
     </main>
+    {% endblock %}
 </body>
 </html>

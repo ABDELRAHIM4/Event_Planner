@@ -1,0 +1,85 @@
+/* Index Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.hero-section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.hero-section .button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.hero-section .button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.feature-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 30%;
+}
+
+/* Divider Styles */
+.divider {
+    border: none; /* Remove default border */
+    height: 2px; /* Set height for the line */
+    background-color: #cc3300; /* Color of the line */
+    margin: 40px 0; /* Space above and below the line */
+}
+
+/* Animation Classes */
+.animated-delay1 {
+    animation-delay: 0.5s;
+}
+.animated-delay2 {
+    animation-delay: 1s;
+}
+.animated-delay3 {
+    animation-delay: 1.5s;
+}
+.animated-delay4 {
+    animation-delay: 2s;
+}
+.animated-delay5 {
+    animation-delay: 2.5s;
+}
+.animated-delay6 {
+    animation-delay: 3s;
+}
+.animated-delay7 {
+    animation-delay: 3.5s;
+}
+.animated-delay8 {
+    animation-delay: 4s;
+}

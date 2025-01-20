@@ -1,15 +1,92 @@
-/* Button Styles */
-button {
+/* General Styles */
+body {
+    font-family: Arial, sans-serif; /* Consistent font */
+    background-color: #f4f4f4; /* Light background for contrast */
+    color: #333; /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading Styles */
+h1, h2, h3 {
+    color: #35424a; /* Consistent color for headings */
+    margin: 10px 0; /* Spacing around headings */
+    font-family: 'Arial', sans-serif; /* Consistent font */
+}
+
+h1 {
+    font-size: 2.5em; /* Larger size for main headings */
+}
+
+h2 {
+    font-size: 2em; /* Medium size for subheadings */
+}
+
+h3 {
+    font-size: 1.5em; /* Smaller size for tertiary headings */
+}
+
+/* Header and Footer Styles */
+header, footer {
+    background: #35424a; /* Dark background for header/footer */
+    color: #ffffff; /* White text */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* General Button Styles */
+button, a.button {
     background: #35424a;
     color: #ffffff;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none; /* Remove underline for links styled as buttons */
+    display: inline-block; /* Ensure buttons and links are inline-block */
+    transition: background 0.3s; /* Smooth transition for hover effect */
+    margin: 5px; /* Margin for spacing */
 }
 
-button:hover {
-    background: #e8491d;
+/* Box Styles for Links */
+.box {
+    background: #ffffff; /* White background for boxes */
+    border: 1px solid #dddddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside the box */
+    margin: 10px 0; /* Margin between boxes */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.box:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Event Card Styles */
+.event-card {
+    background: #ffffff; /* White background for event cards */
+    border: 1px solid #dddddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside the card */
+    margin: 10px 0; /* Margin between cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.event-card:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Event Title Styles */
+.event-card h3 {
+    color: #35424a; /* Dark color for event titles */
+    margin: 0 0 10px; /* Margin below the title */
+}
+
+/* Event Details Styles */
+.event-card p {
+    margin: 5px 0; /* Margin for event details */
 }
 
 /* Form Styles */
@@ -20,14 +97,26 @@ form {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="submit"] {
-    width: 100%;
+/* Flash Message Styles */
+.flash-message {
     padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #dddddd;
+    margin: 10px 0;
     border-radius: 5px;
+    color: #ffffff;
+}
+
+.flash-message.success {
+    background-color: #28a745; /* Green */
+}
+
+.flash-message.error {
+    background-color: #dc3545; /* Red */
+}
+
+.flash-message.info {
+    background-color: #17a2b8; /* Blue */
+}
+
+.flash-message.warning {
+    background-color: #ffc107; /* Yellow */
 }

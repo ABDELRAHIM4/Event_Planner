@@ -1,38 +1,58 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='invitations.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <h1>Invitations</h1>
 
-{% block content %}
-<h1>Invitations</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
-<h2>Received Invitations</h2>
-{% if received_invitations %}
-    <ul>
-    {% for invitation in received_invitations %}
-        <li>
-            Event: {{ invitation.event_name }} (Invited by: {{ invitation.inviter.username }})
-            <form action="{{ url_for('respond_to_invitation') }}" method="post">
-                <input type="hidden" name="event_id" value="{{ invitation.event_id }}">
-                <button type="submit" name="action" value="accept">Accept</button>
-                <button type="submit" name="action" value="reject">Reject</button>
-            </form>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No pending invitations.</p>
-{% endif %}
+    <h2>Received Invitations</h2>
+    {% if received_invitations %}
+        <ul>
+        {% for invitation in received_invitations %}
+            <li>
+                Event: {{ invitation.event_name }} (Invited by: {{ invitation.inviter.username }})
+                <form action="{{ url_for('respond_to_invitation') }}" method="post">
+                    <input type="hidden" name="event_id" value="{{ invitation.event_id }}">
+                    <button type="submit" name="action" value="accept">Accept</button>
+                    <button type="submit" name="action" value="reject">Reject</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending invitations.</p>
+    {% endif %}
 
-<h2>Sent Invitations</h2>
-{% if sent_invitations %}
-    <ul>
-    {% for invitation in sent_invitations %}
-        <li>
-            You have invited {{ invitation.username }} to an event. Please notify them manually to respond.
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>You have no sent invitations.</p>
-{% endif %}
+    <h2>Sent Invitations</h2>
+    {% if sent_invitations %}
+        <ul>
+        {% for invitation in sent_invitations %}
+            <li>
+                You have invited {{ invitation.username }} to an event. Please notify them manually to respond.
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no sent invitations.</p>
+    {% endif %}
 
-<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
-{% endblock %}
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    {% endblock %}
+</body>
+</html>

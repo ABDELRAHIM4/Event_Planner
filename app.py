@@ -11,6 +11,7 @@ from datetime import datetime
 # Load environment variables
 load_dotenv()
 
+# Initialize Flask application
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY', 'default_secret_key')
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', "mongodb://localhost:27017/event_planner")
@@ -19,29 +20,35 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI', "mongodb://localhost:27017/even
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Initialize MongoDB connection
 mongo = PyMongo(app)
 
+# Set up Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+# User class for Flask-Login
 class User(UserMixin):
     def __init__(self, user_data):
         self.id = str(user_data['_id'])
         self.username = user_data['username']
         self.email = user_data['email']
 
+# Load user from the database
 @login_manager.user_loader
 def load_user(user_id):
     user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
     return User(user_data) if user_data else None
 
+# Route for the index page
 @app.route('/')
 def index():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     return render_template('index.html')
 
+# Route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -61,6 +68,7 @@ def login():
         flash('Invalid username or password', 'error')
     return render_template('login.html')
 
+# Route for user logout
 @app.route('/logout')
 @login_required
 def logout():
@@ -68,6 +76,7 @@ def logout():
     flash('Logged out successfully.', 'success')
     return redirect(url_for('index'))
 
+# Route for user registration
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -84,10 +93,14 @@ def register():
         flash('A user already exists with that username.', 'error')
     return render_template('register.html')
 
+# Route for the dashboard
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    events = list(mongo.db.events.find({'creator': ObjectId(current_user.id)}))
+    events = list(mongo.db.events.find({'creator': ObjectId(current_user.id)}))  # Created events
+    accepted_events = list(mongo.db.events.find({
+        'attendees': current_user.username
+    }))  # Accepted events
     invitations = list(mongo.db.events.find({
         'invitations': {
             '$elemMatch': {
@@ -98,6 +111,7 @@ def dashboard():
     }))
     return render_template('dashboard.html', events=events, invitations=invitations)
 
+# Route for creating a new event
 @app.route('/create_event', methods=['GET', 'POST'])
 @login_required
 def create_event():
@@ -117,6 +131,7 @@ def create_event():
         return redirect(url_for('dashboard'))
     return render_template('create_event.html')
 
+# Route for event details
 @app.route('/event/<event_id>')
 @login_required
 def event_detail(event_id):
@@ -129,6 +144,7 @@ def event_detail(event_id):
     attendees = event.get('attendees', [])
     return render_template('event_detail.html', event=event, creator=creator, attendees=attendees)
 
+# Route for inviting users to an event
 @app.route('/invite/<event_id>', methods=['POST'])
 @login_required
 def invite(event_id):
@@ -171,6 +187,7 @@ def invite(event_id):
     
     return redirect(url_for('event_detail', event_id=event_id))
 
+# Route for responding to invitations
 @app.route('/respond_invitation', methods=['POST'])
 @login_required
 def respond_invitation():

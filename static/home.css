@@ -1,0 +1,88 @@
+/* Home Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff3e6; /* Light background color */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Main Heading */
+h1 {
+    color: #cc3300; /* Dark red color */
+    text-align: center;
+    margin-bottom: 20px; /* Add some space below the heading */
+}
+
+/* Hero Section */
+.hero-section {
+    background: #fff; /* White background for the hero section */
+    padding: 40px;
+    border-radius: 8px; /* Slightly larger border radius */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Deeper shadow for more depth */
+    text-align: center;
+    margin-bottom: 30px; /* Space below the hero section */
+}
+
+/* Button Styles */
+.hero-section .button {
+    padding: 12px 20px; /* Increased padding for a larger button */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px; /* Larger font size for better readability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.hero-section .button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Event List */
+.event-list {
+    margin-top: 20px;
+}
+
+/* Event Card Styles */
+.event-card {
+    background: #fff; /* White background for event cards */
+    padding: 20px; /* Increased padding for better spacing */
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slightly deeper shadow */
+    transition: transform 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.event-card:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+/* Event Card Heading */
+.event-card h3 {
+    color: #35424a; /* Dark gray color for headings */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+/* Event Card Paragraphs */
+.event-card p {
+    margin: 5px 0;
+    color: #666; /* Lighter gray for paragraph text */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .hero-section {
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    .hero-section .button {
+        padding: 10px 15px; /* Adjust button size */
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .event-card {
+        padding: 15px; /* Adjust padding for event cards */
+    }
+}
