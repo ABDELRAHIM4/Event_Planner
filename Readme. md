@@ -1,0 +1,113 @@
+# Event Planner
+
+Event Planner is a Flask-based web application that allows users to organize and manage events seamlessly. Users can invite others to their events, and invitees can accept or reject invitations. The app keeps track of event attendance and provides a user-friendly dashboard for both inviters and invitees.
+
+---
+
+## Features
+
+### Core Functionality:
+- **User Authentication:**
+  - Register a new account.
+  - Log in to access your personalized dashboard.
+
+- **Event Creation:**
+  - Create and name events.
+  - View all events you have created.
+
+- **Invitations:**
+  - Send invitations by entering the username of the invitee.
+  - Accept or reject received invitations.
+  - Track invitation statuses (pending, accepted, rejected).
+
+- **Dashboard Views:**
+  - **Inviter Dashboard:** View attendees for each of your events.
+  - **Invitee Dashboard:** See pending invitations and respond to them.
+
+---
+
+## Technologies Used
+
+### Backend:
+- **Flask:** Python-based microframework for building web applications.
+- **Flask-Sessions:** For session management.
+
+### Database:
+- **MongoDB:** NoSQL database for storing users, events, and invitations.
+
+### Frontend:
+- **HTML5/CSS:** Basic templates for rendering web pages.
+- **Jinja2 Templating:** Dynamically render HTML content based on backend logic.
+
+---
+
+## Setup Instructions
+
+### Prerequisites:
+- Python 3.8 or higher
+- MongoDB installed and running locally or remotely
+
+### Steps to Run Locally:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/ABDELRAHIM4/Event_Planner.git
+   cd Event_Planner
+   ```
+
+2. **Create a Virtual Environment:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set Environment Variables:**
+   Create a `.env` file in the root directory and configure the following:
+   ```env
+   FLASK_APP=app.py
+   FLASK_ENV=development
+   SECRET_KEY=your_secret_key
+   MONGO_URI=mongodb://localhost:27017/event_planner
+   ```
+
+5. **Run the Application:**
+   ```bash
+   flask run
+   ```
+
+6. **Access the App:**
+   Open your browser and navigate to `http://127.0.0.1:5000/`.
+
+---
+
+## Directory Structure
+
+```
+Event_Planner/
+├── app.py              # Main application file
+├── templates/          # HTML templates for rendering web pages
+├── static/             # Static files (CSS, JS, images)
+├── requirements.txt    # Python dependencies
+├── README.md           # Project documentation
+└── .env                # Environment variables (not included in the repo)
+```
+
+---
+
+## How to Use
+
+1. **Register/Login:** Create an account or log in with existing credentials.
+2. **Create an Event:** Navigate to the dashboard and create a new event.
+3. **Send Invitations:** Enter usernames to invite others to your event.
+4. **Manage Invitations:**
+   - Inviters can view accepted attendees in their dashboard.
+   - Invitees can accept or reject invitations from their dashboard.
+
+---
+
+## Author
+- **Abdulrahman Ahmed** - Full-stack developer and designer of the Event Planner project.
